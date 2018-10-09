@@ -30,7 +30,6 @@ namespace Sample_project
                 Console.ReadLine();
 
                 //Console.WriteLine(AuthorName[1]);
-
             }
             
 
