@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Sample_project
 {
-    public  class Book
+    public enum genreEnum { fiction, nonfiction, management, biography }
+
+    public class Book
     {
         public string Title { get; set; }
         public string Author { get; set; }
@@ -21,6 +23,11 @@ namespace Sample_project
         }
         public Book() { }
 
+        public void printBookInfo()
+        {
+            Console.WriteLine("Book Title : " + Title + " Author : " + Author + " Genre : " + Genre + " Pub Year : " + Pub_Year);
+        }
+
     }
-    
+
 }
