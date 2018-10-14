@@ -14,18 +14,26 @@ namespace Sample_project
         public string Author { get; set; }
         public genreEnum Genre { get; set; }
         public int Pub_Year { get; set; }
-        public Book(string title, string author, genreEnum genre, int pub_year)
+        public string Edition_Lang { get; set; }
+        public int ID_No { get; set; }
+        public Book(string title, string author, genreEnum genre, int pub_year, 
+                                        string Edition_Lang, int ID_No)
+
         {
-            Title = title;
-            Author = author;
-            Genre = genre;
-            Pub_Year = pub_year;
+           this.Title = title;
+            this.Author = author;
+           this.Genre = genre;
+            this.Pub_Year = pub_year;
+            this.Edition_Lang = Edition_Lang;
+            this.ID_No = ID_No;
+
         }
         public Book() { }
 
         public void printBookInfo()
         {
-            Console.WriteLine("Book Title : " + Title + " Author : " + Author + " Genre : " + Genre + " Pub Year : " + Pub_Year);
+            Console.WriteLine("Book Title : " + Title + " Author : " + Author + " Genre : " + Genre 
+                + " Pub Year : " + Pub_Year + "Edition Lang : " + Edition_Lang + "ID_No :" +ID_No );
         }
 
     }
