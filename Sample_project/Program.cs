@@ -15,8 +15,10 @@ namespace Sample_project
         static void Main(string[] args)
         {
             Library lib1 = new Library();
-            lib1.addBooks();
+            lib1.addExistingBooks();
+            lib1.printListOfBooks();
             lib1.displayMenu();
+            lib1.printListOfBooks();
             Console.ReadLine();
         }
     }

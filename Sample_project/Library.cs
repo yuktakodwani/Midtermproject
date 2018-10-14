@@ -11,6 +11,7 @@ namespace Sample_project
         findBook = 1,
         findBookbyAuthor = 2,
         findBookbyGenre = 3,
+        addBook = 4,
         quit = 9,
     }
 
@@ -26,6 +27,7 @@ namespace Sample_project
         "Find Book by Title  : 1\n" +
         "Find Book by Author : 2\n" +
         "Find Book by Genre  : 3\n" +
+        "Add  Book           : 4\n" +
         "Quit                : 9\n" +
          "******************************************** \n" +
         "\n" +
@@ -33,6 +35,22 @@ namespace Sample_project
 
         private byte menuOptionFromUser;
 
+        public void printListOfBooks()
+        {
+            // Print the book List
+            Console.WriteLine("All the books");
+            foreach (Book value in bookList)
+            {
+                value.printBookInfo();
+            }
+        }
+
+        public void displayMenu()
+        {
+            Console.WriteLine(menuText);
+            menuOptionFromUser = Convert.ToByte(Console.ReadLine());
+            performMenuAction();
+        }
 
         private void performMenuAction()
         {
@@ -52,6 +70,11 @@ namespace Sample_project
                     findBookByGenre();
                     displayMenu();
                     break;
+                case (byte)menuOptionEnum.addBook:
+                    //Console.WriteLine("This will add new book to List");
+                    addNewBook();
+                    displayMenu();
+                    break;
                 case (byte)menuOptionEnum.quit:
                     Console.WriteLine("Good Bye");
                     break;
@@ -60,13 +83,6 @@ namespace Sample_project
                     displayMenu();
                     break;
             }
-        }
-
-        public void displayMenu()
-        {
-            Console.WriteLine(menuText);
-            menuOptionFromUser = Convert.ToByte(Console.ReadLine());
-            performMenuAction();
         }
 
         public void findBook()
@@ -111,6 +127,19 @@ namespace Sample_project
             Console.WriteLine();
         }
 
+        public void addNewBook()
+        {
+            Console.WriteLine("Provide the title of book you want to add :");
+            string newTitle = Console.ReadLine();
+            Console.WriteLine("Provide the author of book " + newTitle + " to add :");
+            string newAuthor = Console.ReadLine();
+            Console.WriteLine("Provide the Genre to add  book " + newTitle + " :0 for fiction, 1 for nonfiction, 2 for management, 3 for biography");
+            int newGenre = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Provide the Publication year  of book " + newTitle + " to add :");
+            int newPubYear = Convert.ToInt32(Console.ReadLine());
+            bookList.Add(new Book(newTitle, newAuthor, (genreEnum)newGenre, newPubYear));
+        }
+
         public void findBookByGenre()
         {
             Console.WriteLine("Enter the Genre to search :0 for fiction, 1 for nonfiction, 2 for management, 3 for biography");
@@ -118,7 +147,7 @@ namespace Sample_project
             int foundBooks = 0;
             foreach (Book value in bookList)
             {
-                if ((int) value.Genre == iGenre)
+                if ((int)value.Genre == iGenre)
                 {
                     foundBooks++;
                     Console.WriteLine("Book found " + foundBooks);
@@ -132,7 +161,8 @@ namespace Sample_project
             Console.WriteLine();
         }
 
-        public void addBooks()
+        //To initialize the Book lists from exisiting book titles
+        public void addExistingBooks()
         {
             // Add the book details
             //method 1 to add book
@@ -143,11 +173,11 @@ namespace Sample_project
             book1.Pub_Year = 1970;
             //method 2 to add book details
             Book book2 = new Book("What happended", "Hillory Clinton", genreEnum.biography, 2017);
-            Book book3 = new Book("title3", "author3", genreEnum.fiction, 2018);
-            Book book4 = new Book("title4", "author4", genreEnum.nonfiction, 2008);
-            Book book5 = new Book("title5", "author5", genreEnum.management, 2008);
-            Book book6 = new Book("title6", "author6", genreEnum.biography, 2008);
-            Book book7 = new Book("title6", "author3", genreEnum.fiction, 2010);
+            Book book3 = new Book("Hunger Games", "Suzanne Collins", genreEnum.fiction, 2008);
+            Book book4 = new Book("Small Fry", "Lisa Brennan Jobs", genreEnum.nonfiction, 2018);
+            Book book5 = new Book("Getting things done", "David allen", genreEnum.management, 2002);
+            Book book6 = new Book("Steve Jobs", "Walter Isaacson", genreEnum.biography, 2011);
+            Book book7 = new Book("Pride and prejudice", "Jane austin", genreEnum.fiction, 2000);
 
             //Add the book to book list
             bookList.Add(book1);
@@ -158,12 +188,6 @@ namespace Sample_project
             bookList.Add(book6);
             bookList.Add(book7);
 
-            // Print the book List
-            Console.WriteLine("All the books");
-            foreach (Book value in bookList)
-            {
-                value.printBookInfo();
-            }
         }
 
     }

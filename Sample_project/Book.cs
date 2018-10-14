@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Sample_project
 {
-    public enum genreEnum { fiction, nonfiction, management, biography }
+    public enum genreEnum : int
+    { fiction = 0,
+      nonfiction = 1,
+      management = 2,
+      biography = 3
+    }
 
     public class Book
     {
