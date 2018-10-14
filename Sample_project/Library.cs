@@ -114,7 +114,18 @@ namespace Sample_project
         public void findBookByGenre()
         {
             Console.WriteLine("Enter the Genre to search :0 for fiction, 1 for nonfiction, 2 for management, 3 for biography");
-            int iGenre = Convert.ToInt32(Console.ReadLine());
+            int iGenre = 0;
+            try
+            {
+                 iGenre = Convert.ToInt32(Console.ReadLine());
+                
+            }
+            catch(FormatException)
+            {
+                Console.WriteLine("Genre should be integer");
+                findBookByGenre();
+            }
+            
             int foundBooks = 0;
             foreach (Book value in bookList)
             {
@@ -131,7 +142,13 @@ namespace Sample_project
             }
             Console.WriteLine();
         }
+        public void QuitProgram()
+        {
+            Console.WriteLine("Quitting the program");
+            Environment .Exit(0);
 
+
+        }
         public void addBooks()
         {
             // Add the book details
@@ -141,13 +158,14 @@ namespace Sample_project
             book1.Author = "R. K. Narayan";
             book1.Genre = genreEnum.fiction;
             book1.Pub_Year = 1970;
+            book1.Edition_Lang = "English";
             //method 2 to add book details
-            Book book2 = new Book("What happended", "Hillory Clinton", genreEnum.biography, 2017);
-            Book book3 = new Book("title3", "author3", genreEnum.fiction, 2018);
-            Book book4 = new Book("title4", "author4", genreEnum.nonfiction, 2008);
-            Book book5 = new Book("title5", "author5", genreEnum.management, 2008);
-            Book book6 = new Book("title6", "author6", genreEnum.biography, 2008);
-            Book book7 = new Book("title6", "author3", genreEnum.fiction, 2010);
+            Book book2 = new Book("What happened", "Hillary Clinton", genreEnum.biography, 2017, "English", 21);
+            Book book3 = new Book("Hunger Games", "Suzanne Collins", genreEnum.fiction, 2008, "English", 13);
+            Book book4 = new Book("Small Fry", "Lisa Brennan Jobs", genreEnum.nonfiction, 2018, "English", 15);
+            Book book5 = new Book("Getting things done", "David allen", genreEnum.management, 2002, "English", 03);
+            Book book6 = new Book("Steve Jobs", "Walter Isaacson", genreEnum.biography, 2011, "English", 61);
+            Book book7 = new Book("Pride and prejudice", "Jane austin", genreEnum.fiction, 2000, "English", 22);
 
             //Add the book to book list
             bookList.Add(book1);
@@ -157,6 +175,14 @@ namespace Sample_project
             bookList.Add(book5);
             bookList.Add(book6);
             bookList.Add(book7);
+
+            //Remove books from list
+           /* var results = new List<Book>//assign values to results
+            {
+               new Book (){ Title= "Getting Things done", Author = "David allen", Pub_Year = 2002},
+                new Book(){ Title= "Pride and prejudice", Author = "Jane austin", Pub_Year = 2000}
+           };
+            var removeList = new List<string>() { "Getting things done", "Pride and prejudice" };*/
 
             // Print the book List
             Console.WriteLine("All the books");
